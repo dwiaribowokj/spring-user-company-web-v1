@@ -7,10 +7,12 @@ Modul web/API yang menyediakan **REST endpoint** untuk fitur pengguna, perusahaa
 ## 🚀 Fitur
 
 - Register User (`POST /users`)
+- Detail User (`GET /users/{id}`)
 - Membuat Company (`POST /companies`)
-- Menambahkan User ke Company (`POST /companies/{id}/members`)
-- Melihat seluruh Company milik User (`GET /users/{id}/companies`)
-- Menghapus User dari Company (`DELETE /companies/{id}/members/{userId}`)
+- Detail Company (`GET /companies/{id}`)
+- Menambahkan User ke Company (`POST /members`)
+- Melihat seluruh Company milik User (`GET /members/user/{userId}`)
+- Menghapus User dari Company (`DELETE /members/{companyId}/{userId}`)
 
 ---
 
@@ -22,6 +24,7 @@ Proyek ini bergantung pada:
 - Spring Boot Web
 - Jakarta Validation
 - Lombok
+- Springdoc OpenAPI (Swagger UI)
 
 ---
 
@@ -68,6 +71,22 @@ Content-Type: application/json
 }
 ```
 
+### Lihat Detail Company
+```http
+GET /companies/{id}
+```
+
+### Tambah Anggota Company
+```http
+POST /members
+Content-Type: application/json
+
+{
+  "userId": "xxx",
+  "companyId": "yyy"
+}
+```
+
 ---
 
 ## 🛠 Cara Menjalankan
@@ -77,7 +96,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-Akses melalui: [http://localhost:8082](http://localhost:8082)
+Akses melalui: [http://localhost:8082/swagger-ui.html](http://localhost:8082/swagger-ui.html)
 
 ---
 
@@ -85,7 +104,7 @@ Akses melalui: [http://localhost:8082](http://localhost:8082)
 
 - [ ] Integrasi ke Eureka
 - [ ] Pengamanan dengan JWT
-- [ ] Dokumentasi Swagger/OpenAPI
+- [ ] Dokumentasi Swagger/OpenAPI lengkap
 - [ ] Validasi tambahan & Global Exception
 
 ---
