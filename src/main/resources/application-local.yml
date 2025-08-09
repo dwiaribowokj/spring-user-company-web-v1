@@ -1,5 +1,23 @@
+stack: spring
+role: service
+deploy:
+  enabled: true
+  method: jar
+  path: /mnt/data/apps/spring/auth
+  service_name: user-company-web-v1.service
+  port: 8081
+  from_artifact: true
+artifact:
+  publish: nexus
+  repository: maven-snapshots  
+  base_url: https://nexus.dwiaribowokj.xyz
+  groupId: com.wiee
+  artifactId: web-v1
+  version: latest
+  packaging: jar
+
 server:
-  port: 8082
+  port: 8083
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/example-user-company
