@@ -8,7 +8,7 @@ deploy:
   from_artifact: true         # ambil JAR dari Nexus, BUKAN build di server
   path: /mnt/data/apps/spring/user-company-web-v1
   service_name: spring-user-company-web-v1.service
-  port: 8085
+  port: 8086
   build_tool: maven           # info saja (boleh maven/gradle)
   java_version: 21
 
