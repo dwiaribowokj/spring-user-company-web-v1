@@ -5,7 +5,7 @@ deploy:
   enabled: true
   branch: main
   method: jar                 # run via systemd pakai file JAR
-  from_artifact: true         # ambil JAR dari Nexus, BUKAN build di server
+  from_artifact: false         # true ambil JAR dari Nexus, false build di server
   path: /mnt/data/apps/spring/user-company-web-v1
   service_name: spring-user-company-web-v1.service
   port: 8086
