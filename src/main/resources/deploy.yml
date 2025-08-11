@@ -16,8 +16,8 @@ artifact:
   publish: nexus              # sumber artifact
   base_url: https://nexus.dwiaribowokj.xyz
   repository: maven-snapshots  # atau maven-snapshots saat dev
-  groupId: <com.wiee.usercompany>
-  artifactId: user-company-web-v1
+  groupId: com.company.user
+  artifactId: web-v1
   version: latest             # atau set angka spesifik: 1.2.3
   packaging: jar
   # opsional jika perlu classifier:
