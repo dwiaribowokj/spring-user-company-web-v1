@@ -4,21 +4,30 @@ role: service
 deploy:
   enabled: true
   branch: main
-  method: jar                 # run via systemd pakai file JAR
-  from_artifact: false         # true ambil JAR dari Nexus, false build di server
-  path: /mnt/data/apps/spring/user-company-web-v1
-  service_name: spring-user-company-web-v1.service
-  port: 8086
-  build_tool: maven           # info saja (boleh maven/gradle)
+
+  # build / artifact
+  from_artifact: false        # true = ambil dari Nexus, false = build di server
+  build_tool: maven
   java_version: 21
 
+  # runtime (releases + symlink current.jar)
+  path: /mnt/data/apps/spring/user-company-web-v1
+  port: 8086
+
+  # fallback lama (systemd) — tetap boleh ada, tapi tak dipakai jika compose_dir diset
+  method: jar
+  service_name: spring-user-company-web-v1.service
+
+  # >>> penting untuk Docker:
+  compose_dir: /mnt/data/docker/springboot/user-company-web-v1
+  compose_file: docker-compose.yml
+
 artifact:
-  publish: nexus              # sumber artifact
+  publish: nexus
   base_url: https://nexus.dwiaribowokj.xyz
-  repository: maven-snapshots  # atau maven-snapshots saat dev
+  repository: maven-snapshots    # atau maven-releases
   groupId: com.company.user
   artifactId: web-v1
-  version: latest             # atau set angka spesifik: 1.2.3
+  version: latest
   packaging: jar
-  # opsional jika perlu classifier:
   # classifier: ""
