@@ -5,8 +5,8 @@ deploy:
   enabled: true
   branch: main
 
-  # build / artifact
-  from_artifact: false        # true = ambil dari Nexus, false = build di server
+  # build/artifact
+  from_artifact: false
   build_tool: maven
   java_version: 21
 
@@ -14,18 +14,18 @@ deploy:
   path: /mnt/data/apps/spring/user-company-web-v1
   port: 8086
 
-  # fallback lama (systemd) — tetap boleh ada, tapi tak dipakai jika compose_dir diset
+  # legacy (systemd) – dibiarkan, tapi akan diabaikan jika compose_dir diset
   method: jar
   service_name: spring-user-company-web-v1.service
 
-  # >>> penting untuk Docker:
+  # >>> penting untuk Docker
   compose_dir: /mnt/data/docker/springboot/user-company-web-v1
   compose_file: docker-compose.yml
 
 artifact:
   publish: nexus
   base_url: https://nexus.dwiaribowokj.xyz
-  repository: maven-snapshots    # atau maven-releases
+  repository: maven-snapshots
   groupId: com.company.user
   artifactId: web-v1
   version: latest
